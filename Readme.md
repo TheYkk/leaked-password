@@ -17,7 +17,7 @@ import (
 
 func registerUser(username, password string) error {
 	// Check password is leaked
-	isLeaked, err := leakedpassword.Leaked(password)
+	isLeaked, err := leakedpassword.IsLeaked(password)
 	if err != nil {
 		return err
 	}
