@@ -2,7 +2,7 @@ package leakedpassword
 
 import "testing"
 
-func TestLeaked(t *testing.T) {
+func TestIsLeaked(t *testing.T) {
 	type args struct {
 		password string
 	}
@@ -31,7 +31,7 @@ func TestLeaked(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := Leaked(tt.args.password)
+			got, err := IsLeaked(tt.args.password)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Leaked() error = %v, wantErr %v", err, tt.wantErr)
 				return

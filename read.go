@@ -4,17 +4,18 @@ import (
 	"crypto/sha1"
 	"embed"
 	"encoding/hex"
-	"github.com/bits-and-blooms/bloom/v3"
 	"strings"
+
+	"github.com/bits-and-blooms/bloom/v3"
 )
 
 //go:embed db.db
 var DB embed.FS
 
-//Leaked is checking password in leaked passwords bitset db
+//IsLeaked is checking password in leaked passwords bitset db
 // To find password leaked status first we need to generate sum of file
 // and make uppercase because db is stored with uppercase sums
-func Leaked(password string) (bool, error) {
+func IsLeaked(password string) (bool, error) {
 	fil := bloom.NewWithEstimates(6000000, 0.0001)
 	passDb, err := DB.Open("db.db")
 	if err != nil {
